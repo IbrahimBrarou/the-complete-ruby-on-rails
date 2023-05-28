@@ -1,0 +1,26 @@
+<h1 class="text-center mt-4">Alpha bloggers</h1>
+<div class="container">
+  <% @users.each do |user| %>
+    <div class="row justify-content-md-center">
+      <div class="col-8 mt-4">
+        <div class="card text-center shadow mb-5 bg-white rounded">
+          <div class="card-header font-italic">
+            <%= link_to user.username, user %>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title"><%= link_to image_tag("https://media.licdn.com/dms/image/C4D03AQFOu-oYxqx7Ww/profile-displayphoto-shrink_800_800/0/1651918961187?e=1691020800&v=beta&t=dNNiYKRz_q-VxqGOMBzdprAZTSlSqcXHF4vFzfO4sQI",
+                 alt:user.username, 
+                 class: "rounded shadow mx-auto d-block",
+                 style: 'height:10vw;width:10vw' ), user %></h5>
+            <p class="card-text"><%= pluralize(user.articles.count, "article") %></p>
+            <%= link_to "View profile", user_path(user), class: "btn btn-outline-success" %>
+            <%= link_to "Edit profile", edit_user_path(user), class: "btn btn-outline-info" %>
+          </div>
+          <div class="card-footer text-muted">
+            <small>Joined <%= time_ago_in_words(user.created_at) %> ago</small>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
